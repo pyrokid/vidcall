@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="login_button">LOGIN</string>
+    <string name="answer_button">ANSWER</string>
+    <string name="decline_button">DECLINE</string>
+    <string name="call_button">CALL</string>
+    <string name="stop_service">STOP SERVICE</string>
+    <string name="drop_call_button">DROPCALL</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="logged_in_ass">Logged in as:</string>
+    <string name="someone">Someone</string>
+    <string name="logging_in_message">Logging in</string>
+    <string name="please_wait_message">Please wait...</string>
+    <string name="please_enter_name_message">Please enter a name</string>
+    <string name="enter_user_name_message">Please enter a user to call</string>
+    <string name="invalid_callID_message">Started with invalid callId, aborting.</string>
+    <string name="backpress_warninig_message">End call before exit activity, please.</string>
 </resources>
