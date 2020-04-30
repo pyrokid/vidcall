@@ -4,5 +4,4 @@ import android.app.Application;
 
 public class VidCallApplication extends Application {
 
-
 }
