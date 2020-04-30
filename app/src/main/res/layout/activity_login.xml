@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="15dp"
-        android:text="Enter your name"
+        android:text="@string/enter_your_name"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/loginName"
         app:layout_constraintEnd_toEndOf="@+id/loginName"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/loginName" />
 
     <EditText
         android:id="@+id/loginName"

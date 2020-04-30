@@ -6,4 +6,7 @@
     <string name="call_button">CALL</string>
     <string name="stop_service">STOP SERVICE</string>
     <string name="drop_call_button">DROPCALL</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="logged_in_ass">Logged in as:</string>
+    <string name="someone">Someone</string>
 </resources>

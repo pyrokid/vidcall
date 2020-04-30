@@ -1,39 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dip"
     tools:context=".modules.main.MainActivity">
 
+
     <LinearLayout
+        android:id="@+id/numberInputLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:orientation="vertical"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:id="@+id/numberInputLayout">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:text="Enter recipient name"
             android:textAllCaps="true"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/callName"
+            style="@style/EditTextBlackNWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="32sp"
+            android:inputType="textNoSuggestions"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:inputType="textNoSuggestions">
+            android:textSize="32sp">
 
             <requestFocus />
         </EditText>
@@ -42,65 +51,70 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/numberInputLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:paddingBottom="24dp"
-        android:layout_centerHorizontal="true">
+        app:layout_constraintBottom_toTopOf="@+id/numberInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/numberInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/numberInputLayout">
 
         <TextView
             android:id="@+id/infoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logged in as: "
+            android:text="@string/logged_in_ass"
             android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/loggedInName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Someone"
+            android:text="@string/someone"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </LinearLayout>
 
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/numberInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/numberInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/numberInputLayout">
 
         <Button
             android:id="@+id/callButton"
-            android:text="@string/call_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:background="@color/white"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal"
-            android:minHeight="56dp"
-            android:minWidth="132dp"
-            android:layout_centerHorizontal="true" />
+            android:gravity="center"
+            android:text="@string/call_button"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/stopButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/callButton"
-            android:layout_marginBottom="10dp"
             android:background="@android:color/transparent"
+            android:text="@string/stop_service"
+            android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/black"
-            android:textAllCaps="true"
-            android:text="@string/stop_service"
-            android:layout_centerHorizontal="true" />
+            app:layout_constraintEnd_toEndOf="@+id/callButton"
+            app:layout_constraintStart_toStartOf="@+id/callButton"
+            app:layout_constraintTop_toBottomOf="@+id/callButton" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

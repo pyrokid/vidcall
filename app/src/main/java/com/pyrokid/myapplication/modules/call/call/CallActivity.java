@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.pyrokid.myapplication.R;
 import com.pyrokid.myapplication.common.BaseActivity;
-import com.pyrokid.myapplication.modules.login.LoginPresenter;
 import com.pyrokid.myapplication.service.SinchService;
 import com.sinch.android.rtc.AudioController;
 import com.sinch.android.rtc.PushPair;
@@ -31,13 +30,12 @@ import moxy.presenter.InjectPresenter;
 public class CallActivity extends BaseActivity implements CallView {
 
     @InjectPresenter
-    CallPresenter callPresenter ;
+    CallPresenter callPresenter;
 
     static final String TAG = CallActivity.class.getSimpleName();
     static final String ADDED_LISTENER = "addedListener";
     static final String VIEWS_TOGGLED = "viewsToggled";
 
-    // private AudioPlayer mAudioPlayer;
     private Timer mTimer;
     private UpdateCallDurationTask mDurationTask;
 
@@ -81,8 +79,7 @@ public class CallActivity extends BaseActivity implements CallView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
-//
-//        mAudioPlayer = new AudioPlayer(this);
+
         mCallDuration = findViewById(R.id.callDuration);
         mCallerName = findViewById(R.id.remoteUser);
         mCallState = findViewById(R.id.callState);
@@ -185,7 +182,7 @@ public class CallActivity extends BaseActivity implements CallView {
 
     private void addLocalView() {
         if (mLocalVideoViewAdded || getSinchServiceInterface() == null) {
-            return; //early
+            return;
         }
         final VideoController vc = getSinchServiceInterface().getVideoController();
         if (vc != null) {
