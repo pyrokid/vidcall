@@ -6,6 +6,13 @@
     android:padding="0dip"
     tools:context=".modules.main.MainActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contactList"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/numberInputLayout"
@@ -17,10 +24,9 @@
         android:orientation="vertical"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:id="@+id/textView"
@@ -56,11 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/numberInputLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:paddingBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/numberInputLayout"
         app:layout_constraintEnd_toEndOf="@+id/numberInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/numberInputLayout">
+        app:layout_constraintStart_toStartOf="@+id/numberInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/contactList">
 
         <TextView
             android:id="@+id/infoText"
@@ -116,5 +122,7 @@
             app:layout_constraintTop_toBottomOf="@+id/callButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

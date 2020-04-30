@@ -8,15 +8,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.pyrokid.myapplication.R;
 import com.pyrokid.myapplication.common.BaseActivity;
 import com.pyrokid.myapplication.modules.call.call.CallActivity;
 import com.pyrokid.myapplication.service.SinchService;
 import com.sinch.android.rtc.calling.Call;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import moxy.presenter.InjectPresenter;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView, ContactAdapter.ItemClickListener {
 
 
     @InjectPresenter
@@ -24,11 +30,27 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private Button mCallButton;
     private EditText mCallName;
+    private RecyclerView mContactList;
+    private ContactAdapter contactAdapter;
+    private List<String> contacts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mContactList = findViewById(R.id.contactList);
+        mContactList.setLayoutManager(new LinearLayoutManager(this));
+
+        contacts.add("Billy");
+        contacts.add("Ross");
+        contacts.add("Boss");
+
+
+        contactAdapter = new ContactAdapter(this, contacts);
+        contactAdapter.setClickListener(this);
+        mContactList.setAdapter(contactAdapter);
+
 
         mCallName = findViewById(R.id.callName);
         mCallButton = findViewById(R.id.callButton);
@@ -78,4 +100,9 @@ public class MainActivity extends BaseActivity implements MainView {
 
         }
     };
+
+    @Override
+    public void onItemClick(View view, int position) {
+        mCallName.setText(contacts.get(position));
+    }
 }
