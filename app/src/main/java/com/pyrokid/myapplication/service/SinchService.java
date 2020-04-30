@@ -1,58 +1,37 @@
 package com.pyrokid.myapplication.service;
 
-import com.pyrokid.myapplication.modules.call.incomingCall.IncomingCallActivity;
-import com.sinch.android.rtc.AudioController;
-import com.sinch.android.rtc.ClientRegistration;
-import com.sinch.android.rtc.Sinch;
-import com.sinch.android.rtc.SinchClient;
-import com.sinch.android.rtc.SinchClientListener;
-import com.sinch.android.rtc.SinchError;
-import com.sinch.android.rtc.video.VideoController;
-import com.sinch.android.rtc.calling.Call;
-import com.sinch.android.rtc.calling.CallClient;
-import com.sinch.android.rtc.calling.CallClientListener;
-import com.sinch.android.rtc.MissingPermissionException;
-
-
+import android.Manifest;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Binder;
-import android.os.IBinder;
-import android.util.Log;
 import android.content.pm.PackageManager;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.Manifest;
+import android.util.Log;
+
+import com.pyrokid.myapplication.modules.call.incomingCall.IncomingCallActivity;
+import com.sinch.android.rtc.AudioController;
+import com.sinch.android.rtc.ClientRegistration;
+import com.sinch.android.rtc.MissingPermissionException;
+import com.sinch.android.rtc.Sinch;
+import com.sinch.android.rtc.SinchClient;
+import com.sinch.android.rtc.SinchClientListener;
+import com.sinch.android.rtc.SinchError;
+import com.sinch.android.rtc.calling.Call;
+import com.sinch.android.rtc.calling.CallClient;
+import com.sinch.android.rtc.calling.CallClientListener;
+import com.sinch.android.rtc.video.VideoController;
 
 
 public class SinchService extends Service {
 
-    /*
-     IMPORTANT!
-
-     This sample application was designed to provide the simplest possible way
-     to evaluate Sinch Android SDK right out of the box, omitting crucial feature of handling
-     incoming calls via managed push notifications, which requires registering in FCM console and
-     procuring google-services.json in order to build and work.
-
-     Android 8.0 (API level 26) imposes limitation on background services and we strongly encourage
-     you to use Sinch Managed Push notifications to handle incoming calls when app is closed or in
-     background or phone is locked.
-
-     DO NOT USE THIS APPLICATION as a skeleton of your project!
-
-     Instead, use:
-     - sinch-rtc-sample-push (for audio calls) and
-     - sinch-rtc-sample-video-push (for video calls)
-    */
-
-    private static final String APP_KEY = "enter-application-key";
-    private static final String APP_SECRET = "enter-application-secret";
+    private static final String APP_KEY = "084e7ff6-47f9-4f93-a65b-e158f2734524";
+    private static final String APP_SECRET = "nLT/+/sCB0mrOjoVBIpCqQ==";
     private static final String ENVIRONMENT = "clientapi.sinch.com";
 
     public static final int MESSAGE_PERMISSIONS_NEEDED = 1;
