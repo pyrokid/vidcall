@@ -22,8 +22,6 @@ import moxy.MvpAppCompatActivity;
 public class BaseActivity extends MvpAppCompatActivity implements ServiceConnection {
 
 
-
-
     private SinchService.SinchServiceInterface mSinchServiceInterface;
 
     @Override
@@ -56,11 +54,9 @@ public class BaseActivity extends MvpAppCompatActivity implements ServiceConnect
     }
 
     protected void onServiceConnected() {
-        // for subclasses
     }
 
     protected void onServiceDisconnected() {
-        // for subclasses
     }
 
     protected SinchService.SinchServiceInterface getSinchServiceInterface() {
@@ -82,7 +78,6 @@ public class BaseActivity extends MvpAppCompatActivity implements ServiceConnect
     });
 
 
-
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         boolean granted = grantResults.length > 0;
         for (int grantResult : grantResults) {
@@ -92,8 +87,8 @@ public class BaseActivity extends MvpAppCompatActivity implements ServiceConnect
             Toast.makeText(this, "You may now place a call", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "This application needs permission to use your microphone and camera to function properly.", Toast.LENGTH_LONG).show();
+            mSinchServiceInterface.retryStartAfterPermissionGranted();
         }
-        mSinchServiceInterface.retryStartAfterPermissionGranted();
     }
 
     private void bindService() {

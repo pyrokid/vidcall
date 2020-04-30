@@ -79,9 +79,8 @@ public class SinchService extends Service {
             createClient(userName);
         }
         try {
-            //mandatory checks
             mSinchClient.checkManifest();
-            //auxiliary check
+
             if (getApplicationContext().checkCallingOrSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 throw new MissingPermissionException(Manifest.permission.CAMERA);
             }

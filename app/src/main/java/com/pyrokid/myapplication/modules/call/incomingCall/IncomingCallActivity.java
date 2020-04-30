@@ -29,21 +29,17 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
 
     static final String TAG = IncomingCallActivity.class.getSimpleName();
     private String mCallId;
-//    private AudioPlayer mAudioPlayer;
-    private boolean mAcceptVideo = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incoming_call);
 
-        Button answer = (Button) findViewById(R.id.answerButton);
+        Button answer = findViewById(R.id.answerButton);
         answer.setOnClickListener(mClickListener);
-        Button decline = (Button) findViewById(R.id.declineButton);
+        Button decline = findViewById(R.id.declineButton);
         decline.setOnClickListener(mClickListener);
 
-//        mAudioPlayer = new AudioPlayer(this);
-//        mAudioPlayer.playRingtone();
         mCallId = getIntent().getStringExtra(SinchService.CALL_ID);
     }
 
@@ -52,7 +48,7 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
         Call call = getSinchServiceInterface().getCall(mCallId);
         if (call != null) {
             call.addCallListener(new SinchCallListener());
-            TextView remoteUser = (TextView) findViewById(R.id.remoteUser);
+            TextView remoteUser = findViewById(R.id.remoteUser);
             remoteUser.setText(call.getRemoteUserId());
 
         } else {
@@ -62,7 +58,6 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
     }
 
     private void answerClicked() {
-        //mAudioPlayer.stopRingtone();
         Call call = getSinchServiceInterface().getCall(mCallId);
         if (call != null) {
             call.answer();
@@ -75,7 +70,6 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
     }
 
     private void declineClicked() {
-        //mAudioPlayer.stopRingtone();
         Call call = getSinchServiceInterface().getCall(mCallId);
         if (call != null) {
             call.hangup();
@@ -89,8 +83,12 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
         public void onCallEnded(Call call) {
             CallEndCause cause = call.getDetails().getEndCause();
             Log.d(TAG, "Call ended, cause: " + cause.toString());
-            //mAudioPlayer.stopRingtone();
             finish();
+        }
+
+        @Override
+        public void onShouldSendPushNotification(Call call, List<PushPair> list) {
+
         }
 
         @Override
@@ -103,16 +101,10 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
             Log.d(TAG, "Call progressing");
         }
 
-        @Override
-        public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
-            // Send a push through your push provider here, e.g. GCM
-        }
 
         @Override
         public void onVideoTrackAdded(Call call) {
             // Display some kind of icon showing it's a video call
-            // and pass it to the CallScreenActivity via Intent and mAcceptVideo
-            mAcceptVideo = true;
         }
         @Override
         public void onVideoTrackPaused(Call call) {
@@ -124,17 +116,14 @@ public class IncomingCallActivity extends BaseActivity implements IncomingCallVi
         }
     }
 
-    private View.OnClickListener mClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.answerButton:
-                    answerClicked();
-                    break;
-                case R.id.declineButton:
-                    declineClicked();
-                    break;
-            }
+    private View.OnClickListener mClickListener = v -> {
+        switch (v.getId()) {
+            case R.id.answerButton:
+                answerClicked();
+                break;
+            case R.id.declineButton:
+                declineClicked();
+                break;
         }
     };
 

@@ -3,7 +3,6 @@ package com.pyrokid.myapplication.modules.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,18 +31,12 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mLoginName = (EditText) findViewById(R.id.loginName);
+        mLoginName = findViewById(R.id.loginName);
 
-        mLoginButton = (Button) findViewById(R.id.loginButton);
+        mLoginButton = findViewById(R.id.loginButton);
         mLoginButton.setEnabled(false);
 
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginClicked();
-
-            }
-        });
+        mLoginButton.setOnClickListener(view -> loginClicked());
     }
 
     @Override
@@ -70,14 +63,14 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
 
     @Override
     public void onStarted() {
-        openPlaceCallActivity();
+        openMainActivity();
     }
 
     private void loginClicked() {
         String userName = mLoginName.getText().toString();
 
         if (userName.isEmpty()) {
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.please_enter_name_message, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -89,19 +82,19 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
             getSinchServiceInterface().startClient(userName);
             showSpinner();
         } else {
-            openPlaceCallActivity();
+            openMainActivity();
         }
     }
 
-    private void openPlaceCallActivity() {
+    private void openMainActivity() {
         Intent mainActivity = new Intent(this, MainActivity.class);
         startActivity(mainActivity);
     }
 
     private void showSpinner() {
         mSpinner = new ProgressDialog(this);
-        mSpinner.setTitle("Logging in");
-        mSpinner.setMessage("Please wait...");
+        mSpinner.setTitle(getString(R.string.logging_in_message));
+        mSpinner.setMessage(getString(R.string.please_wait_message));
         mSpinner.show();
     }
 }

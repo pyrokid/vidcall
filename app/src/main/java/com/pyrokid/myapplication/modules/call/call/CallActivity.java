@@ -53,12 +53,7 @@ public class CallActivity extends BaseActivity implements CallView {
 
         @Override
         public void run() {
-            CallActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    updateCallDuration();
-                }
-            });
+            CallActivity.this.runOnUiThread(CallActivity.this::updateCallDuration);
         }
     }
 
@@ -101,7 +96,7 @@ public class CallActivity extends BaseActivity implements CallView {
                 mAddedListener = true;
             }
         } else {
-            Log.e(TAG, "Started with invalid callId, aborting.");
+            Log.e(TAG, getString(R.string.invalid_callID_message));
             finish();
         }
 
@@ -110,7 +105,7 @@ public class CallActivity extends BaseActivity implements CallView {
 
     private void updateUI() {
         if (getSinchServiceInterface() == null) {
-            return; // early
+            return;
         }
 
         Call call = getSinchServiceInterface().getCall(mCallId);
@@ -148,11 +143,10 @@ public class CallActivity extends BaseActivity implements CallView {
 
     @Override
     public void onBackPressed() {
-        // User should exit activity by ending call, not by going back.
+        Toast.makeText(this, R.string.backpress_warninig_message, Toast.LENGTH_SHORT).show();
     }
 
     private void endCall() {
-        //mAudioPlayer.stopProgressTone();
         Call call = getSinchServiceInterface().getCall(mCallId);
         if (call != null) {
             call.hangup();
@@ -237,10 +231,10 @@ public class CallActivity extends BaseActivity implements CallView {
     private void setVideoViewsVisibility(final boolean localVideoVisibile, final boolean remoteVideoVisible) {
         if (getSinchServiceInterface() == null)
             return;
-        if (mRemoteVideoViewAdded == false) {
+        if (!mRemoteVideoViewAdded) {
             addRemoteView();
         }
-        if (mLocalVideoViewAdded == false) {
+        if (!mLocalVideoViewAdded) {
             addLocalView();
         }
         final VideoController vc = getSinchServiceInterface().getVideoController();
@@ -283,12 +277,10 @@ public class CallActivity extends BaseActivity implements CallView {
         @Override
         public void onCallProgressing(Call call) {
             Log.d(TAG, "Call progressing");
-            //mAudioPlayer.playProgressTone();
         }
 
         @Override
         public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
-            // Send a push through your push provider here, e.g. GCM
         }
 
         @Override

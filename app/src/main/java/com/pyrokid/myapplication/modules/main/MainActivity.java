@@ -30,18 +30,18 @@ public class MainActivity extends BaseActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mCallName = (EditText) findViewById(R.id.callName);
-        mCallButton = (Button) findViewById(R.id.callButton);
+        mCallName = findViewById(R.id.callName);
+        mCallButton = findViewById(R.id.callButton);
         mCallButton.setEnabled(false);
         mCallButton.setOnClickListener(buttonClickListener);
 
-        Button stopButton = (Button) findViewById(R.id.stopButton);
+        Button stopButton = findViewById(R.id.stopButton);
         stopButton.setOnClickListener(buttonClickListener);
     }
 
     @Override
     protected void onServiceConnected() {
-        TextView userName = (TextView) findViewById(R.id.loggedInName);
+        TextView userName = findViewById(R.id.loggedInName);
         userName.setText(getSinchServiceInterface().getUserName());
         mCallButton.setEnabled(true);
     }
@@ -56,15 +56,13 @@ public class MainActivity extends BaseActivity implements MainView {
     private void callButtonClicked() {
         String userName = mCallName.getText().toString();
         if (userName.isEmpty()) {
-            Toast.makeText(this, "Please enter a user to call", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.enter_user_name_message, Toast.LENGTH_LONG).show();
             return;
         }
 
         Call call = getSinchServiceInterface().callUserVideo(userName);
-        String callId = call.getCallId();
-
         Intent callScreen = new Intent(this, CallActivity.class);
-        callScreen.putExtra(SinchService.CALL_ID, callId);
+        callScreen.putExtra(SinchService.CALL_ID, call.getCallId());
         startActivity(callScreen);
     }
 
