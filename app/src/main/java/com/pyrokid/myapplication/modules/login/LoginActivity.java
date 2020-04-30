@@ -1,6 +1,5 @@
 package com.pyrokid.myapplication.modules.login;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-
 import com.pyrokid.myapplication.R;
 import com.pyrokid.myapplication.common.BaseActivity;
-import com.pyrokid.myapplication.modules.call.call.CallActivity;
 import com.pyrokid.myapplication.modules.main.MainActivity;
 import com.pyrokid.myapplication.service.SinchService;
 import com.sinch.android.rtc.SinchError;

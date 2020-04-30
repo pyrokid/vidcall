@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="login_button">LOGIN</string>
+    <string name="answer_button">ANSWER</string>
+    <string name="decline_button">DECLINE</string>
+    <string name="call_button">CALL</string>
+    <string name="stop_service">STOP SERVICE</string>
+    <string name="drop_call_button">DROPCALL</string>
 </resources>
