@@ -50,6 +50,8 @@ dependencies {
 
     implementation "com.github.moxy-community:moxy:2.1.2"
     implementation "com.github.moxy-community:moxy-android:2.1.2"
+    implementation "com.github.moxy-community:moxy-app-compat:2.1.2"
+
 
     implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0'
     // and for android -> implementation 'com.github.stephanenicolas.toothpick:smoothie-androidx:3.x'

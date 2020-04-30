@@ -1,4 +1,6 @@
 package com.pyrokid.myapplication.common;
 
-public class BaseFragment {
+import moxy.MvpAppCompatFragment;
+
+public class BaseFragment extends MvpAppCompatFragment {
 }

@@ -1,4 +1,8 @@
 package com.pyrokid.myapplication.common;
 
-public class BaseActivity {
+import moxy.MvpAppCompatActivity;
+
+public class BaseActivity extends MvpAppCompatActivity {
+
+
 }

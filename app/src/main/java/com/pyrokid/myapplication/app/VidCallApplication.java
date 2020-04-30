@@ -1,4 +1,8 @@
 package com.pyrokid.myapplication.app;
 
-public class VidCallApplication {
+import android.app.Application;
+
+public class VidCallApplication extends Application {
+
+
 }
